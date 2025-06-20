@@ -34,25 +34,41 @@ let db;
       database: 'DogWalkService'
     });
 
-    // Create a table if it doesn't exist
-    await db.execute(`
-      CREATE TABLE IF NOT EXISTS books (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255),
-        author VARCHAR(255)
-      )
-    `);
+    await db.execute("DELETE FROM WalkRatings");
+    await db.execute("DELETE FROM WalkApplications");
+    await db.execute("DELETE FROM WalkRequests");
+    await db.execute("DELETE FROM Dogs");
+    await db.execute("DELETE FROM Users");
 
-    // Insert data if table is empty
-    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
-    if (rows[0].count === 0) {
-      await db.execute(`
-        INSERT INTO books (title, author) VALUES
-        ('1984', 'George Orwell'),
-        ('To Kill a Mockingbird', 'Harper Lee'),
-        ('Brave New World', 'Aldous Huxley')
-      `);
-    }
+    await db.execute(`INSERT INTO Users (username, email, password_hash, role) VALUES
+      ('alice123', 'alice@example.com', 'hashed123', 'owner'),
+      ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
+      ('carol123', 'carol@example.com', 'hashed789', 'owner'),
+      ('samdog', 'sam@example.com', 'hashsam123', 'owner'),
+      ('evawalks', 'eva@example.com', 'hasheva456', 'walker')`);
+
+    await db.execute(`INSERT INTO Dogs (owner_id, name, size)
+      SELECT user_id, 'Max', 'medium' FROM Users WHERE username = 'alice123'`);
+    await db.execute(`INSERT INTO Dogs (owner_id, name, size)
+      SELECT user_id, 'Bella', 'small' FROM Users WHERE username = 'carol123'`);
+    await db.execute(`INSERT INTO Dogs (owner_id, name, size)
+      SELECT user_id, 'Duffy', 'large' FROM Users WHERE username = 'samdog'`);
+    await db.execute(`INSERT INTO Dogs (owner_id, name, size)
+      SELECT user_id, 'Newman', 'medium' FROM Users WHERE username = 'alice123'`);
+    await db.execute(`INSERT INTO Dogs (owner_id, name, size)
+      SELECT user_id, 'Luna', 'small' FROM Users WHERE username = 'carol123'`);
+
+    await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      SELECT dog_id, '2025-06-10 08:00:00', 30, 'Parklands', 'open' FROM Dogs WHERE name = 'Max'`);
+    await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      SELECT dog_id, '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted' FROM Dogs WHERE name = 'Bella'`);
+    await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      SELECT dog_id, '2025-06-11 10:00:00', 60, 'City Park', 'open' FROM Dogs WHERE name = 'Duffy'`);
+    await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      SELECT dog_id, '2025-06-11 11:15:00', 30, 'Riverside Trail', 'completed' FROM Dogs WHERE name = 'Newman'`);
+    await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      SELECT dog_id, '2025-06-12 07:45:00', 20, 'Sunset Street', 'cancelled' FROM Dogs WHERE name = 'Luna'`);
+
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
   }
