@@ -32,7 +32,9 @@
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({username: username.value, password: password.value})
-          })
+          });
+
+          
         }
       }
     }).mount('#app');
