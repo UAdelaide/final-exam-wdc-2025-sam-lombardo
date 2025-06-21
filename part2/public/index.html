@@ -24,9 +24,11 @@
   </div>
 
   <script>
-    const { createApp } = Vue;
+    const { createApp, ref } = Vue;
     createApp({
       setup() {
+        const username = ref('')
+
         async function login(){
           try{
             const res = await fetch('/api/users/login',{
