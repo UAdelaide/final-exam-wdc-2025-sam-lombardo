@@ -128,7 +128,8 @@
         async function loadUsersAndDogs(){
           try{
             const userRes = await fetch('/api/users/me');
-            user.value = await()
+            user.value = await userRes.json();
+            const dogRes = await fetch('/api/users/${}')
           }catch(err){
 
           }
