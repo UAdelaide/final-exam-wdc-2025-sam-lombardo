@@ -28,7 +28,9 @@
     createApp({
       setup() {
         async function login(){
-          const res = {}
+          const res = await fetch('/api/users/login',{
+            
+          })
         }
       }
     }).mount('#app');
