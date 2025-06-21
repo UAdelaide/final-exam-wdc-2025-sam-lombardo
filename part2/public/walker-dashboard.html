@@ -85,9 +85,11 @@
             const res = await fetch('/api/users/me', {
               credentials: 'include'
             });
-            if 
+            if (!res.ok){
+              throw new Error('Not logged in');
+            }
           }catch(err){
-
+            error.value = 
           }
         }
 
