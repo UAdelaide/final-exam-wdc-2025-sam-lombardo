@@ -44,7 +44,7 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
-        const user = 3;
+        const user = ref(null);
 
         async function loadWalkRequests() {
           try {
@@ -89,7 +89,7 @@
               throw new Error('Not logged in');
             }
           }catch(err){
-            error.value = 
+            error.value = 'Failed to get current user';
           }
         }
 
