@@ -130,9 +130,9 @@
             const userRes = await fetch('/api/users/me');
             user.value = await userRes.json();
             const dogRes = await fetch('/api/users/${user.value.user_id}/dogs');
-            dogs.value = 
+            dogs.value = await dogRes.json();
           }catch(err){
-
+            error.value = ''
           }
         }
 
