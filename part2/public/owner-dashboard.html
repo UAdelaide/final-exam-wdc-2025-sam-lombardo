@@ -129,7 +129,9 @@
 
         async function loadUsersAndDogs(){
           try{
-            const userRes = await fetch('/api/users/me');
+            const userRes = await fetch('/api/users/me', {
+              credentials: 'include'
+            });
             user.value = await userRes.json();
             const dogRes = await fetch(`/api/users/${user.value.user_id}/dogs`);
             dogs.value = await dogRes.json();
