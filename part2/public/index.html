@@ -40,7 +40,7 @@
               body: JSON.stringify({username: username.value, password: password.value})
             });
 
-            
+            const result = await res.json();
             if (!res.ok){
               throw new Error(result.error);
             }
@@ -53,9 +53,10 @@
           } catch(err){
             error.value = err.message;
           };
-          return { username, password, login, error }
 
         }
+        return { username, password, login, error }
+
       }
     }).mount('#app');
   </script>
