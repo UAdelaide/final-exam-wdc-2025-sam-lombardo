@@ -89,7 +89,6 @@
               throw new Error('Not logged in');
             }
             user.value = await res.json();
-            console.log(user.value);
           }catch(err){
             error.value = 'Failed to get current user';
           }
