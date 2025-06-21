@@ -40,6 +40,10 @@
             if (!res.ok){
               throw new Error(result.error);
             }
+
+            if (result.user.role === 'owner'){
+              window.relocate
+            }
           }
 
 
