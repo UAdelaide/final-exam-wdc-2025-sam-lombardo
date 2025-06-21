@@ -66,8 +66,9 @@
               const imageData = await imageRes.json();
               dog.image = imageData.message;
             }
+            dogs.value = data;
           }catch(err){
-
+            dogError.value = 'Failed to load dogs';
           }
         }
 
