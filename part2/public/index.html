@@ -71,6 +71,9 @@
             dogError.value = 'Failed to load dogs';
           }
         }
+        onMounted(() => {
+          loadDogs();
+        })
 
         return { username, password, login, error }
 
