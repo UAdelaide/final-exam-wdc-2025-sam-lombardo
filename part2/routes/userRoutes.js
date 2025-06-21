@@ -62,6 +62,8 @@ router.post('/logout', (req, res) => {
   })
 });
 
-router.get('/:id/dogs')
+router.get('/:id/dogs', async (req,res) => {
+  const userId = 
+})
 
 module.exports = router;
