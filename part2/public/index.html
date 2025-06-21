@@ -44,7 +44,7 @@
             }
 
             if (result.user.role === 'owner'){
-              window.relocate.href = 'owner-dashboard.html'; // redirect to owner dashboard if user is owner
+              window.location.href = 'owner-dashboard.html'; // redirect to owner dashboard if user is owner
             }else if (result.user.role === 'walker'){
               window.relocate.href = 'walker-dashboard.html'; // redirect to walker dashboard if user is walker
             }
