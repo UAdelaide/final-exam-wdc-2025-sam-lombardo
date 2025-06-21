@@ -117,7 +117,7 @@
 
         async function logout(){
           await fetch('/api/users/logout', {method: 'POST'});
-          window.location.href = 'index.html'
+          window.location.href = 'index.html';
         }
 
         onMounted(() => {
@@ -129,7 +129,8 @@
           walks,
           message,
           error,
-          submitWalkRequest
+          submitWalkRequest,
+          logout
         };
       }
     }).mount('#app');
