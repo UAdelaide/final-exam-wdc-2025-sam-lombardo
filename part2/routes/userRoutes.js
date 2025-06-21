@@ -62,4 +62,6 @@ router.post('/logout', (req, res) => {
   })
 });
 
+router.get('/:id/dogs')
+
 module.exports = router;
