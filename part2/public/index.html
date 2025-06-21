@@ -11,7 +11,7 @@
 
   <div id="app" class="container py-5">
     <h1 class="mb-4 text-primary">Welcome to Dog Walking Service!</h1>
-    <form @submit.prevent=class="card p-4 shadow-sm">
+    <form @submit.prevent="login" class="card p-4 shadow-sm">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input v-model="username" type="username" id="username" class="form-control" required>
@@ -20,6 +20,7 @@
         <label for="password" class="form-label">Password</label>
         <input v-model="password" type="password" id="password" class="form-control" required>
       </div>
+      <button type="submit" class="">Login</button>
     </form>
   </div>
 
