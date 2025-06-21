@@ -133,7 +133,9 @@
               credentials: 'include'
             });
             user.value = await userRes.json();
-            const dogRes = await fetch(`/api/users/${user.value.user_id}/dogs`);
+            const dogRes = await fetch(`/api/users/${user.value.user_id}/dogs`, {
+              credentials: 'include'
+            });
             dogs.value = await dogRes.json();
           }catch(err){
             error.value = 'Failed to load users/dogs';
