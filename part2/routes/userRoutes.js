@@ -79,7 +79,8 @@ router.get('/:id/dogs', async (req,res) => {
 app.get('/api/dogs', async (req, res) => {
   try {
     const [rows] = await db.execute(`
-      
+      SELECT d.dog_id, d.name, d.size, d.owner_id
+      FROM Dogs d
     `);
     res.json(rows);
   } catch (err) {
