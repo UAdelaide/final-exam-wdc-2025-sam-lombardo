@@ -132,12 +132,13 @@
             const dogRes = await fetch('/api/users/${user.value.user_id}/dogs');
             dogs.value = await dogRes.json();
           }catch(err){
-            error.value = ''
+            error.value = 'Failed to load users/dogs';
           }
         }
 
         onMounted(() => {
           loadWalks();
+          loadUsersAndDogs();
         });
 
         return {
@@ -146,7 +147,9 @@
           message,
           error,
           submitWalkRequest,
-          logout
+          logout,
+          dogs,
+          user
         };
       }
     }).mount('#app');
