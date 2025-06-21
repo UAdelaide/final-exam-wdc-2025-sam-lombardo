@@ -63,7 +63,10 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/:id/dogs', async (req,res) => {
-  const userId = 
+  const userId = req.params.id;
+  try{
+
+  }catch(err)
 })
 
 module.exports = router;
