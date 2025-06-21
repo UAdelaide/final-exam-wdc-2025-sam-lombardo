@@ -88,6 +88,7 @@
             if (!res.ok){
               throw new Error('Not logged in');
             }
+            user.value = 
           }catch(err){
             error.value = 'Failed to get current user';
           }
