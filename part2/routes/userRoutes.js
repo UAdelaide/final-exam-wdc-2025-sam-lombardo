@@ -65,8 +65,12 @@ router.post('/logout', (req, res) => {
 router.get('/:id/dogs', async (req,res) => {
   const userId = req.params.id;
   try{
+    const [rows] = await db.query(`
+      SELECT 
+    `)
+  }catch(err){
 
-  }catch(err)
+  }
 })
 
 module.exports = router;
