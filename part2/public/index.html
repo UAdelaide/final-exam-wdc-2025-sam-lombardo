@@ -22,11 +22,12 @@
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    
     <div v-if="error" class="alert alert-danger">{{error}}</div>
   </div>
 
   <script>
-    const { createApp, ref } = Vue;
+    const { createApp, ref, onMounted } = Vue;
     createApp({
       setup() {
         const username = ref('');
