@@ -29,6 +29,7 @@
       setup() {
         const username = ref('');
         const password = ref('');
+        const error = ref('');
 
         async function login(){
           try{
@@ -47,7 +48,7 @@
               window.relocate.href = 'walker-dashboard.html'; // redirect to walker dashboard if user is walker
             }
           } catch(err){
-            error.
+            error.value = err.message;
           };
 
         }
